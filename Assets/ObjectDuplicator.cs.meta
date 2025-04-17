@@ -1,2 +1,21 @@
 fileFormatVersion: 2
 guid: 82572c8982badd446b108a626b0ca312
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pipePrefab: {fileID: 6163319600445785619, guid: e4129c206d890f347a92b014b12ba501, type: 3}
+  - cube1Prefab: {instanceID: 0}
+  - cylinderPrefab: {instanceID: 0}
+  - cube2Prefab: {instanceID: 0}
+  - cylinderPrefab2: {instanceID: 0}
+  - pipeSpawnPoint: {instanceID: 0}
+  - cube1SpawnPoint: {instanceID: 0}
+  - cylinderSpawnPoint: {instanceID: 0}
+  - cube2SpawnPoint: {instanceID: 0}
+  - cylinder2SpawnPoint: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
