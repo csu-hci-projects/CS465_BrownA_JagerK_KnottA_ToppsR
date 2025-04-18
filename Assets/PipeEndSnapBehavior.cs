@@ -9,7 +9,7 @@ public class PipeEnd : MonoBehaviour
     private XRGrabInteractable grabInteractable;
     private Rigidbody rb;
 
-    public float unsnapDistance = 0.2f;
+    public float unsnapDistance = 0.15f; // adjust as needed
 
     void Awake()
     {
@@ -17,30 +17,42 @@ public class PipeEnd : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         grabInteractable.selectEntered.AddListener(_ => OnGrabbed());
-        // No need to do anything on release here
     }
 
     void Update()
     {
-        if (IsSnapped && Vector3.Distance(transform.position, currentPort.transform.position) > unsnapDistance)
+        if (IsSnapped && currentPort)
         {
-            Unsnap(); // fallback in case something pulls it away
+            // Force-follow snap target
+            transform.position = currentPort.transform.position;
+            transform.rotation = currentPort.transform.rotation;
+
+            // Unsnap if moved too far away (failsafe)
+            float dist = Vector3.Distance(transform.position, currentPort.transform.position);
+            if (dist > unsnapDistance)
+            {
+                Unsnap();
+            }
         }
     }
 
     public void SnapToPort(SnapPort port)
     {
-        currentPort = port;
+        if (IsSnapped) return;
 
-        // Align position, rotation, and scale
+        currentPort = port;
+        currentPort.snappedEnd = this;
+
         transform.position = port.transform.position;
         transform.rotation = port.transform.rotation;
-        transform.localScale = Vector3.one;
 
-        // Freeze in place
-        if (rb) rb.isKinematic = true;
+        if (rb)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
 
-        // Lock movement and rotation while snapped
         grabInteractable.trackPosition = false;
         grabInteractable.trackRotation = false;
     }
@@ -52,8 +64,12 @@ public class PipeEnd : MonoBehaviour
         currentPort.Unregister();
         currentPort = null;
 
-        // Allow movement again
-        if (rb) rb.isKinematic = false;
+        if (rb)
+        {
+            rb.isKinematic = false;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
 
         grabInteractable.trackPosition = true;
         grabInteractable.trackRotation = true;
@@ -61,8 +77,9 @@ public class PipeEnd : MonoBehaviour
 
     private void OnGrabbed()
     {
-        Debug.Log("Pipe End grabbed");
-
-        // Do not unsnap from here — this is now handled by PipeGrabHandler
+        if (IsSnapped)
+        {
+            Unsnap(); // manual detachment
+        }
     }
 }

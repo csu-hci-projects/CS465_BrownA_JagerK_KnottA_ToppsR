@@ -6,11 +6,13 @@ public class SnapPort : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (snappedEnd != null) return;
+
         var pipeEnd = other.GetComponent<PipeEnd>();
-        if (pipeEnd && snappedEnd == null)
+        if (pipeEnd && !pipeEnd.IsSnapped)
         {
-            snappedEnd = pipeEnd;
             pipeEnd.SnapToPort(this);
+            snappedEnd = pipeEnd;
         }
     }
 
