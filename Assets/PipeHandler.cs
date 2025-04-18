@@ -129,9 +129,14 @@ public class PipeGrabHandler : MonoBehaviour
     {
         grabPointA.position = port.position;
         grabPointA.rotation = port.rotation;
+        grabPointA.localScale = Vector3.one;
 
         var rb = grabPointA.GetComponent<Rigidbody>();
-        if (rb) rb.isKinematic = true;
+        if (rb) {
+        rb.isKinematic = true;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
 
         isASnapped = true;
         UpdatePipeColor();
@@ -150,9 +155,14 @@ public class PipeGrabHandler : MonoBehaviour
     {
         grabPointB.position = port.position;
         grabPointB.rotation = port.rotation;
+        grabPointB.localScale = Vector3.one;
 
         var rb = grabPointB.GetComponent<Rigidbody>();
-        if (rb) rb.isKinematic = true;
+        if (rb) {
+        rb.isKinematic = true;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
 
         isBSnapped = true;
         UpdatePipeColor();
@@ -194,7 +204,7 @@ public class PipeGrabHandler : MonoBehaviour
             if (rend)
             {
                 Debug.Log($"Setting material on {sphere.name} to {currentMaterial.name}");
-                rend.material = currentMaterial;
+                rend.sharedMaterial = currentMaterial;
             }
             else
             {
