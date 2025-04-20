@@ -5,4 +5,4 @@
 
 [Checkpoint 1 Video (redirects to YouTube)](https://www.youtube.com/watch?v=WosGP-4NCTI)
 
-[Checkpoint 2 Video (redirects to YouTube)]((https://www.youtube.com/watch?v=jsuiLA7U5C4))
+[Checkpoint 2 Video (redirects to YouTube)](https://www.youtube.com/watch?v=jsuiLA7U5C4)
