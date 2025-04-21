@@ -1,13 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable), typeof(Rigidbody))]
 public class SnapToCubes : MonoBehaviour
 {
-    [Tooltip("If empty, finds all GameObjects tagged 'SnapCube'.")]
-    public List<Transform> snapTargets = new List<Transform>();
-
     [Tooltip("How close you must be on release to snap.")]
     public float snapDistance = 0.2f;
 
@@ -17,8 +13,11 @@ public class SnapToCubes : MonoBehaviour
     UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
     Rigidbody rb;
 
-    bool    isSnapped     = false;
+    bool     isSnapped     = false;
     Transform currentTarget = null;
+
+    // Expose a read‑only property so other scripts (e.g. StretchyPipe) can query snap state
+    public bool IsSnapped => isSnapped;
 
     void Awake()
     {
@@ -27,10 +26,6 @@ public class SnapToCubes : MonoBehaviour
 
         grabInteractable.selectEntered.AddListener(OnGrab);
         grabInteractable.selectExited .AddListener(OnRelease);
-
-        if (snapTargets.Count == 0)
-            foreach (var go in GameObject.FindGameObjectsWithTag("SnapCube"))
-                snapTargets.Add(go.transform);
     }
 
     void OnDestroy()
@@ -41,14 +36,12 @@ public class SnapToCubes : MonoBehaviour
 
     void OnGrab(SelectEnterEventArgs args)
     {
-        // as soon as you grab the sphere, drop any snap
         if (isSnapped)
             Unsnap();
     }
 
     void OnRelease(SelectExitEventArgs args)
     {
-        // only on *release* do we check if we're close enough to snap
         if (!isSnapped)
         {
             var nearest = FindNearest();
@@ -62,7 +55,6 @@ public class SnapToCubes : MonoBehaviour
 
     void Update()
     {
-        // if you're holding the sphere and pull it away far enough, unsnap immediately
         if (grabInteractable.isSelected && isSnapped)
         {
             float d = Vector3.Distance(transform.position, currentTarget.position);
@@ -73,9 +65,10 @@ public class SnapToCubes : MonoBehaviour
 
     Transform FindNearest()
     {
-        Transform best = null;
-        float bestDist = float.MaxValue;
-        foreach (var t in snapTargets)
+        Transform best     = null;
+        float     bestDist = float.MaxValue;
+
+        foreach (var t in SnapCube.All)
         {
             float d = Vector3.Distance(transform.position, t.position);
             if (d < bestDist)
@@ -84,22 +77,23 @@ public class SnapToCubes : MonoBehaviour
                 best     = t;
             }
         }
+
         return best;
     }
 
     void Snap(Transform target)
     {
-        // parent under the cube—but keep the sphere’s world pos/rot/scale
-        transform.SetParent(target, /* worldPositionStays: */ true);
-
-        // then zero out local pos/rot so it hugs the cube
+        // 1) Parent under target, preserving world transform
+        transform.SetParent(target, true);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
 
-        // freeze physics
-        rb.isKinematic     = true;
+        // 2) Clear any existing motion *before* switching to kinematic
         rb.linearVelocity        = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+
+        // 3) Then make the body kinematic so physics no longer moves it
+        rb.isKinematic     = true;
 
         isSnapped     = true;
         currentTarget = target;
@@ -107,10 +101,7 @@ public class SnapToCubes : MonoBehaviour
 
     void Unsnap()
     {
-        // detach from *any* parent, preserving world transform
-        transform.SetParent(null, /* worldPositionStays: */ true);
-
-        // restore physics
+        transform.SetParent(null, true);
         rb.isKinematic = false;
 
         isSnapped     = false;
