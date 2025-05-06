@@ -6,15 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Finalized_Scenes/Build_Task.unity
+    path: Assets/TheMove/Finalized_Scenes/Build_Task.unity
     guid: a77deee86227c2842a175882735d4cc8
   - enabled: 1
-    path: Assets/Finalized_Scenes/Error_Task.unity
+    path: Assets/TheMove/Finalized_Scenes/Error_Task.unity
     guid: 89e41e2cb056e4343a933390f4689d25
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: c481eb11c35d7aa478f7037b67561367, type: 2}
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bccf369ac611ef74da17c601490fea75, type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 1217a38eb2a3fc045bb9d2566c3272ce, type: 2}
-    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 3bf263672e86e824fa8ea1dc641d74ca, type: 2}
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
+    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 9bec1ce6a03ccba4b9a8215241b32e63, type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: a49cadc1a815591479693b955ccf08c1, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 985fdffee33a5944396199c6b7145dd4, type: 3}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1a4c68ca72a83449f938d669337cb305, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: a9a6963505ddf7f4d886008c6dc86122, type: 2}
   m_UseUCBPForAssetBundles: 0
