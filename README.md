@@ -41,3 +41,9 @@ The switch between hands and controllers is best performed by placing the contro
 [Checkpoint 1 Video (redirects to YouTube)](https://www.youtube.com/watch?v=WosGP-4NCTI)
 
 [Checkpoint 2 Video (redirects to YouTube)](https://www.youtube.com/watch?v=jsuiLA7U5C4)
+
+[High Level Overview Video (redirects to sharepoint with video player and download link)](https://colostate-my.sharepoint.com/:v:/g/personal/aknott_colostate_edu/EQ3oMyTk5FNMiNegTBeVodMB7f6EoajGrApvZCJEXHdWgg?e=alJWcu)
+
+[Final Iteration Coding Video (redirects to sharepoint with video player and download link)](https://colostate-my.sharepoint.com/:v:/g/personal/aknott_colostate_edu/EXfgQoWJ4etPiHAGUcNHmAsBqrh-EI9CuCp3DXIzjNydsw?e=fhMWo4)
+
+[Presentation Video (redirects to sharepoint with video player and download link)](https://colostate-my.sharepoint.com/:v:/g/personal/kmjager_colostate_edu/EVcPGtgGgKZKhv3UBlkdu7QBJM1I51yRnubcCJZd57wjrA?e=NagFqs)
