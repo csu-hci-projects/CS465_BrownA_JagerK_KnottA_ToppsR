@@ -11,13 +11,17 @@ Using our prototype:
 Controls:
 
 Controllers:
+
 Grip Button: This is the main control which is responsible for both interacting with the object spawn menu and the objects themselves. Pressing and holding this button while pointed at or directly touching an object will grab it and enable translation in the 3d space.
+
 Joystick: For our testing purposes this control was not used but the left controller joystick enables movement of the player within the scene, and the right controller joystick performs snap turns of the players field of view.
 
 Hands:
+
 Pinch: This is the only control gesture that exists for this input and is responsible for both spawning in new objects as well as grabbing and translating objects either at range or up close.
 
 Switching Modalities:
+
 The switch between hands and controllers is best performed by placing the controllers on a hard surface. The Oculus quest senses this as a queue to switch and does so automatically in the scenes. Alternatively double tapping the controllers together will force a hand switch, though in practice this was never needed.
  
 
