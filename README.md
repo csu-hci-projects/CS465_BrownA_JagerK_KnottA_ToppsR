@@ -1,12 +1,22 @@
 # CS465 Multimodal Interaction Project
 **Alex Brown, Kyle Jager, Alex Knott, Reagan Topps**
 
+## Acknowledgements
+
+- **XR Interaction Toolkit**  
+  This project leverages Unity’s [XR Interaction Toolkit](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@latest), which provides the core abstractions for grabbing and interacting with objects in the 3D XR environment.
+
+- **ChatGPT**  
+  Development was accelerated by insights and example snippets generated with help from [ChatGPT](https://openai.com/chatgpt), an AI language model by OpenAI.
+
+## How to Use
+
 Using our prototype:
 1. [Download the pre-built apk here](https://drive.google.com/file/d/1i0-F5e1dGjC_Kf3coZCEudjgVSPfLxtF/view?usp=drive_link)
 2. In your Meta Quest Developer Hub, connect your headset via a wired link. 
 3. Drag the apk file into the Developer Hub to upload the build onto your meta quest.
 4. Enter the app library and open the project under the "Unknown Sources" Menu and click play.
-5. You should now be launched into the scene and start building.
+5. You should now be launched into the scene and be able to start building.
 
 Controls:
 
